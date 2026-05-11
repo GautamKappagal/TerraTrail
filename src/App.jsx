@@ -50,6 +50,8 @@ export default function App() {
       date: payload.date,
       notes: payload.notes,
       imageUrl: payload.imageUrl,
+      rating: typeof payload.rating === 'number' ? payload.rating : 4,
+      tags: Array.isArray(payload.tags) ? payload.tags : ['Visited'],
       lat: payload.lat,
       lng: payload.lng,
       createdAt: new Date().toISOString(),
@@ -69,7 +71,7 @@ export default function App() {
   }
 
   return (
-    <div className="h-full">
+    <div className="h-svh w-full overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute -left-20 -top-32 h-[420px] w-[420px] rounded-full bg-fuchsia-500/25 blur-3xl" />
         <div className="absolute -bottom-28 -right-20 h-[520px] w-[520px] rounded-full bg-cyan-400/20 blur-3xl" />
@@ -116,23 +118,17 @@ export default function App() {
             </button>
           </div>
 
-          <div className="h-[calc(100svh-64px)] md:h-full">
+          <div className="h-full">
             <MapView
               places={places}
               selectedId={selectedId}
               onSelect={setSelectedId}
               onMapClick={(latlng) => openAddModalFor(latlng)}
+              theme={theme}
             />
           </div>
 
-          {!places.length ? (
-            <div className="pointer-events-none absolute inset-x-0 bottom-6 z-[600] mx-auto w-full max-w-xl px-4">
-              <div className="rounded-2xl border border-white/10 bg-slate-950/55 p-4 text-sm text-slate-200 shadow-glass backdrop-blur-xl">
-                <div className="font-semibold text-slate-50">Your map is empty</div>
-                <div className="mt-1 text-slate-300">Click anywhere on the map to add your first destination.</div>
-              </div>
-            </div>
-          ) : null}
+          {/* Empty state lives inside the map for a stronger onboarding feel */}
         </main>
       </div>
 
