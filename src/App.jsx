@@ -73,8 +73,8 @@ export default function App() {
   return (
     <div className="h-svh w-full overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute -left-20 -top-32 h-[420px] w-[420px] rounded-full bg-fuchsia-500/25 blur-3xl" />
-        <div className="absolute -bottom-28 -right-20 h-[520px] w-[520px] rounded-full bg-cyan-400/20 blur-3xl" />
+        <div className="absolute -left-20 -top-32 h-[420px] w-[420px] rounded-full bg-fuchsia-500/25 blur-3xl"/>
+        <div className="absolute -bottom-28 -right-20 h-[520px] w-[520px] rounded-full bg-cyan-400/20 blur-3xl"/>
       </div>
 
       <main className="relative h-full w-full">

@@ -229,7 +229,7 @@ export default function AddPlaceModal({ open, latLng, onClose, onSave }) {
                   <textarea
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
-                    rows={5}
+                    rows={3}
                     placeholder="What made this place special?"
                     className="mt-1 w-full resize-none rounded-xl border border-white/10 bg-slate-950/40 px-3 py-2.5 text-slate-50 outline-none ring-fuchsia-400/30 transition placeholder:text-slate-400 focus:border-fuchsia-300/40 focus:ring-4"
                   />

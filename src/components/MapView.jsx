@@ -25,6 +25,39 @@ function makePinIcon({ active, rating }) {
   })
 }
 
+function ZoomControls() {
+  const map = useMap()
+  const zoomRef = useRef(null)
+
+  useEffect(() => {
+    if (!zoomRef.current) return
+    L.DomEvent.disableClickPropagation(zoomRef.current)
+  }, [])
+
+  return (
+    <div
+      ref={zoomRef}
+      className="absolute right-6 top-20 z-[1000] flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate-950/70 shadow-glass backdrop-blur-xl"
+    >
+      <button
+        onClick={() => map.zoomIn()}
+        className="grid h-10 w-10 place-items-center text-lg text-slate-100 transition hover:bg-white/10"
+      >
+        +
+      </button>
+
+      <div className="h-px bg-white/10" />
+
+      <button
+        onClick={() => map.zoomOut()}
+        className="grid h-10 w-10 place-items-center text-lg text-slate-100 transition hover:bg-white/10"
+      >
+        −
+      </button>
+    </div>
+  )
+}
+
 function MapClickHandler({ onMapClick }) {
   useMapEvents({
     click(e) {
@@ -95,7 +128,14 @@ export default function MapView({ places, selectedId, onMapClick, onSelect, them
         </div>
       </div>
 
-      <MapContainer center={[20, 0]} zoom={2} scrollWheelZoom className="h-full w-full">
+      <MapContainer
+        center={[20, 0]}
+        zoom={2}
+        scrollWheelZoom
+        zoomControl={false}
+        className="h-full w-full"
+      >
+        <ZoomControls />
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           className={theme === 'dark' ? 'tt-dark-tiles' : ''}
@@ -116,7 +156,7 @@ export default function MapView({ places, selectedId, onMapClick, onSelect, them
               }}
             >
               <Popup>
-                <div className="w-[260px]">
+                <div className="w-[160px]">
                   <div className="aspect-[4/3] overflow-hidden rounded-xl bg-slate-900">
                     <img
                       src={place.imageUrl}

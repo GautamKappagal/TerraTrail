@@ -86,12 +86,12 @@ export default function Sidebar({
             exit={{ x: -28, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 280, damping: 30 }}
             className={[
-              'md:static md:flex md:h-full md:w-full md:translate-x-0 md:flex-col md:opacity-100 md:rounded-3xl md:border md:border-white/10 md:bg-slate-950/45 md:shadow-glass md:backdrop-blur-xl',
+              'md:static md:flex md:h-full md:w-full md:translate-x-0 md:flex-col md:opacity-100 md:rounded-3xl md:border md:border-white/10 md:bg-slate-950/45 md:shadow-glass md:backdrop-blur-xl md:overflow-hidden',
               'fixed left-0 top-0 h-full w-[92%] max-w-[420px] border-r border-white/10 bg-slate-950/60 backdrop-blur-xl',
             ].join(' ')}
           >
             <div className="hidden border-b border-white/10 px-4 py-5 md:block">
-              <div className="text-base font-semibold tracking-tight text-slate-50">TerraTrail</div>
+              <div className="text-3xl font-black tracking-tight text-slate-50">TerraTrail</div>
               <div className="mt-1 text-xs text-slate-300">
                 {places.length ? `${places.length} saved places` : 'Pin your first destination'}
               </div>
@@ -133,7 +133,7 @@ export default function Sidebar({
             </div>
 
             <motion.div
-              className="flex-1 space-y-3 overflow-y-auto px-4 pb-6"
+              className="flex-1 space-y-3 overflow-y-auto px-4 pt-3 pb-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.25 }}
