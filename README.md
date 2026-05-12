@@ -1,6 +1,6 @@
-# TerraTrail
+# TerraTrail 🌍
 
-TerraTrail is a modern travel log frontend where you can save destinations and visualize them on an interactive map.
+Terratrail is a modern interactive travel journal where users can pin destinations, attach memories, and explore trips on a beautifully designed world map.
 
 **Tech stack**
 - React + Vite
@@ -10,12 +10,14 @@ TerraTrail is a modern travel log frontend where you can save destinations and v
 - React Icons
 
 ## Features
-- Click anywhere on the map to add a destination (lat/lng captured automatically)
-- Modal form: place name, travel date, notes, image URL
-- Markers + popups: image, name, date, notes
-- Responsive sidebar with destination cards (search + delete)
-- Clicking a card recenters the map and opens its popup
-- Data persists across refresh with LocalStorage
+
+- 🌍 Interactive world map with custom destination markers
+- 📍 Smart location pinning via map click or typed destination search
+- 📝 Travel journal entries with notes, ratings, and images
+- 🔎 Searchable sidebar with animated destination cards
+- ✨ Smooth fly-to map animations and interactive popups
+- 💾 Persistent storage using LocalStorage
+- 📱 Responsive modern UI built with Tailwind CSS
 
 ## Getting started
 
