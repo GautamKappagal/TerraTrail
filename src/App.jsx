@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FiMoon, FiPlus, FiSun } from 'react-icons/fi'
 import AddPlaceModal from './components/AddPlaceModal.jsx'
 import MapView from './components/MapView.jsx'
@@ -30,11 +30,6 @@ export default function App() {
 
   useEffect(() => {
     if (!selectedId && places.length) setSelectedId(places[0].id)
-  }, [places, selectedId])
-
-  const selectedPlace = useMemo(() => {
-    if (!selectedId) return null
-    return places.find((p) => p.id === selectedId) || null
   }, [places, selectedId])
 
   const openAddModalFor = (latlng) => {
