@@ -112,7 +112,7 @@ export default function App() {
           <button
             type="button"
             onClick={() => openAddModalFor(null)}
-            className="rounded-2xl bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 shadow-glass transition hover:brightness-110 hover:shadow-[0_18px_50px_rgba(34,211,238,0.18)] active:scale-[0.99]"
+            className="rounded-2xl bg-[#C49A6C] hover:bg-[#B78C5F] px-4 py-2 text-sm font-semibold text-white shadow-glass transition hover:brightness-110 hover:shadow-[0_18px_50px_rgba(34,211,238,0.18)] active:scale-[0.99]"
           >
             <span className="inline-flex items-center gap-2">
               <FiPlus /> Add

@@ -144,13 +144,13 @@ export default function AddPlaceModal({ open, latLng, onClose, onSave }) {
             <div className="grid gap-4 px-5 py-4 md:grid-cols-5">
               <div className="md:col-span-3">
                 <label className="block text-sm text-slate-200">
-                  Place <span className="text-fuchsia-300">*</span>
+                  Place<span className="text-[#C49A6C]">*</span>
                 </label>
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g., Singapore"
-                  className="mt-1 w-full rounded-xl border border-white/10 bg-slate-950/40 px-3 py-2.5 text-slate-50 outline-none ring-fuchsia-400/30 transition placeholder:text-slate-400 focus:border-fuchsia-300/40 focus:ring-4"
+                  className="mt-1 w-full rounded-xl border border-white/8 bg-slate-950/50 px-3 py-2.5 text-slate-50 outline-none transition placeholder:text-slate-500 focus:border-[#B89464] focus:ring-2 focus:ring-[#B89464]/30"
                   autoFocus
                 />
 
@@ -161,7 +161,7 @@ export default function AddPlaceModal({ open, latLng, onClose, onSave }) {
                       type="date"
                       value={date}
                       onChange={(e) => setDate(e.target.value)}
-                      className="mt-1 w-full rounded-xl border border-white/10 bg-slate-950/40 px-3 py-2.5 text-slate-50 outline-none ring-fuchsia-400/30 transition focus:border-fuchsia-300/40 focus:ring-4"
+                      className="mt-1 w-full rounded-xl border border-white/8 bg-slate-950/50 px-3 py-2.5 text-slate-50 outline-none transition placeholder:text-slate-500 focus:border-[#B89464] focus:ring-2 focus:ring-[#B89464]/30"
                     />
                   </div>
                   <div>
@@ -170,7 +170,7 @@ export default function AddPlaceModal({ open, latLng, onClose, onSave }) {
                       value={imageUrl}
                       onChange={(e) => setImageUrl(e.target.value)}
                       placeholder="https://..."
-                      className="mt-1 w-full rounded-xl border border-white/10 bg-slate-950/40 px-3 py-2.5 text-slate-50 outline-none ring-fuchsia-400/30 transition placeholder:text-slate-400 focus:border-fuchsia-300/40 focus:ring-4"
+                      className="mt-1 w-full rounded-xl border border-white/8 bg-slate-950/50 px-3 py-2.5 text-slate-50 outline-none transition placeholder:text-slate-500 focus:border-[#B89464] focus:ring-2 focus:ring-[#B89464]/30"
                     />
                   </div>
                 </div>
@@ -189,13 +189,13 @@ export default function AddPlaceModal({ open, latLng, onClose, onSave }) {
                           className={[
                             'rounded-xl border px-3 py-2 text-sm transition',
                             active
-                              ? 'border-fuchsia-300/30 bg-fuchsia-500/15 text-slate-50'
+                              ? 'border-[#B89464] bg-[#B89464]/30 text-slate-50'
                               : 'border-white/10 bg-white/5 text-slate-300 hover:bg-white/10',
                           ].join(' ')}
                           aria-label={`Rate ${v} star`}
                         >
                           <span className="inline-flex items-center gap-2">
-                            <FiStar className={active ? 'text-fuchsia-300' : ''} />
+                            <FiStar className={active ? 'text-[#B89464]' : ''} />
                             {v}
                           </span>
                         </button>
@@ -243,7 +243,7 @@ export default function AddPlaceModal({ open, latLng, onClose, onSave }) {
                     <button
                       type="button"
                       onClick={addCustomTag}
-                      className="rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-slate-100 transition hover:bg-white/10"
+                      className="rounded-xl bg-[#C49A6C] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#B38B5E] disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       Add
                     </button>
@@ -257,7 +257,7 @@ export default function AddPlaceModal({ open, latLng, onClose, onSave }) {
                     onChange={(e) => setNotes(e.target.value)}
                     rows={3}
                     placeholder="What made this place special?"
-                    className="mt-1 w-full resize-none rounded-xl border border-white/10 bg-slate-950/40 px-3 py-2.5 text-slate-50 outline-none ring-fuchsia-400/30 transition placeholder:text-slate-400 focus:border-fuchsia-300/40 focus:ring-4"
+                    className="mt-1 w-full rounded-xl border border-white/8 bg-slate-950/50 px-3 py-2.5 text-slate-50 outline-none transition placeholder:text-slate-500 focus:border-[#B89464] focus:ring-2 focus:ring-[#B89464]/30"
                   />
                 </div>
               </div>
@@ -304,7 +304,7 @@ export default function AddPlaceModal({ open, latLng, onClose, onSave }) {
                 type="button"
                 onClick={handleSave}
                 disabled={!canSave}
-                className="rounded-xl bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-2.5 text-sm font-semibold text-slate-950 shadow-sm transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
+                className="rounded-xl bg-[#C49A6C] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#B38B5E] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Save destination
               </button>

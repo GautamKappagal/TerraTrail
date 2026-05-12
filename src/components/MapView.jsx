@@ -156,7 +156,7 @@ export default function MapView({ places, selectedId, onMapClick, onSelect, them
               }}
             >
               <Popup>
-                <div className="w-[160px]">
+                <div className="w-[200px]">
                   <div className="aspect-[4/3] overflow-hidden rounded-xl bg-slate-900">
                     <img
                       src={place.imageUrl}
@@ -167,7 +167,7 @@ export default function MapView({ places, selectedId, onMapClick, onSelect, them
                   </div>
                   <div className="mt-3">
                     <div className="flex items-center gap-2 text-sm font-semibold text-slate-50">
-                      <FiMapPin className="text-fuchsia-300" />
+                      <FiMapPin className="text-[#D1AE7A]" />
                       <span className="line-clamp-2">{place.name}</span>
                     </div>
                     <div className="mt-1 flex items-center gap-2 text-xs text-slate-300">

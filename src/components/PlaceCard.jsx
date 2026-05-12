@@ -12,7 +12,7 @@ export default function PlaceCard({ place, active, onSelect, onDelete }) {
       className={[
         'group w-full rounded-3xl border p-3 text-left transition',
         'bg-white/5 hover:bg-white/10 border-white/10 hover:border-white/20',
-        active ? 'ring-2 ring-fuchsia-400/40 border-fuchsia-300/20 bg-white/10' : '',
+        active ? 'ring-1 ring-[#D1AE7A] border-[#D1AE7A] bg-[#D1AE7A]/[0.06]' : 'hover:border-white/20',
       ].join(' ')}
     >
       <div className="flex gap-3">
@@ -36,7 +36,7 @@ export default function PlaceCard({ place, active, onSelect, onDelete }) {
                 <FiCalendar className="shrink-0" />
                 <span>{place.date}</span>
                 <span className="inline-flex items-center gap-1.5">
-                  <FiStar className="text-fuchsia-300" />
+                  <FiStar className="text-[#D1AE7A]" />
                   <span className="font-medium">{place.rating ?? 4}</span>
                 </span>
               </div>

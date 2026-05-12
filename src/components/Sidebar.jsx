@@ -60,7 +60,7 @@ export default function Sidebar({
           <button
             type="button"
             onClick={onAddClick}
-            className="rounded-xl bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-3 py-2 text-sm font-semibold text-slate-950"
+            className="rounded-xl bg-[#C49A6C] hover:bg-[#B78C5F] px-3 py-2 text-sm font-semibold text-slate-950"
           >
             <span className="inline-flex items-center gap-2">
               <FiPlus /> Add
@@ -124,7 +124,7 @@ export default function Sidebar({
               <button
                 type="button"
                 onClick={onAddClick}
-                className="mt-3 w-full rounded-2xl bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-2.5 text-sm font-semibold text-slate-950 shadow-sm transition hover:brightness-110"
+                className="mt-3 w-full rounded-2xl bg-[#C49A6C] hover:bg-[#B78C5F] px-4 py-2.5 text-sm font-semibold text-slate-950 shadow-sm transition"
               >
                 <span className="inline-flex items-center justify-center gap-2">
                   <FiPlus /> Add destination
