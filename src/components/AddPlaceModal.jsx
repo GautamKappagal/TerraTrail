@@ -5,6 +5,21 @@ import { FiMapPin, FiStar, FiTag, FiX } from 'react-icons/fi'
 const DEFAULT_IMG =
   'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=60'
 
+async function geocodePlace(placeName) {
+  const res = await fetch(
+    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(placeName)}`
+  )
+
+  const data = await res.json()
+
+  if (!data.length) return null
+
+  return {
+    lat: parseFloat(data[0].lat),
+    lng: parseFloat(data[0].lon),
+  }
+}
+
 export default function AddPlaceModal({ open, latLng, onClose, onSave }) {
   const [name, setName] = useState('')
   const [date, setDate] = useState('')
@@ -50,10 +65,21 @@ export default function AddPlaceModal({ open, latLng, onClose, onSave }) {
     setTagInput('')
   }
 
-  const canSave = name.trim().length > 0 && !!latLng
+  const canSave = name.trim().length > 0
 
-  const handleSave = () => {
-    if (!canSave) return
+  const handleSave = async () => {
+    if (!name.trim()) return
+
+    let coords = latLng
+
+    // If user didn't click map, find coordinates automatically
+    if (!coords) coords = await geocodePlace(name.trim())
+
+    if (!coords) {
+      alert('Could not find this location')
+      return
+    }
+
     onSave?.({
       name: name.trim(),
       date: date || new Date().toISOString().slice(0, 10),
@@ -61,8 +87,8 @@ export default function AddPlaceModal({ open, latLng, onClose, onSave }) {
       imageUrl: (imageUrl.trim() || DEFAULT_IMG).trim(),
       rating,
       tags,
-      lat: latLng.lat,
-      lng: latLng.lng,
+      lat: coords.lat,
+      lng: coords.lng,
     })
   }
 
