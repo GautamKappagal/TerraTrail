@@ -10,7 +10,7 @@ Built to explore modern map-based UI design, smooth interactions, and travel-foc
 
 ## Preview
 
-![TerraTrail Screenshot](./terratrail-preview.png)
+![TerraTrail Screenshot](./preview.png)
 
 **Tech stack**
 - React + Vite
