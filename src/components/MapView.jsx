@@ -3,6 +3,27 @@ import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from 're
 import { FiCalendar, FiMapPin } from 'react-icons/fi'
 import MarkerClusterGroup from 'react-leaflet-cluster'
 import { motion, AnimatePresence } from 'framer-motion'
+import L from 'leaflet'
+
+function makePinIcon({ active, rating }) {
+  const score = typeof rating === 'number' ? rating : 4
+  const cls = active ? 'tt-pin tt-pin--active' : 'tt-pin'
+  return L.divIcon({
+    className: 'tt-pin-wrap',
+    iconSize: [34, 34],
+    iconAnchor: [17, 30],
+    popupAnchor: [0, -22],
+    html: `
+      <div class="${cls}">
+        <div class="tt-pin__ring"></div>
+        <div class="tt-pin__core">
+          <span class="tt-pin__score">${score}</span>
+        </div>
+        <div class="tt-pin__stem"></div>
+      </div>
+    `,
+  })
+}
 
 function MapClickHandler({ onMapClick }) {
   useMapEvents({
@@ -13,8 +34,16 @@ function MapClickHandler({ onMapClick }) {
   return null
 }
 
-function MapController({ selectedPlace, markerRefs }) {
+function MapController({ selectedPlace, places, markerRefs }) {
   const map = useMap()
+
+  useEffect(() => {
+    if (!map) return
+    if (selectedPlace) return
+    if (!places.length) return
+    const bounds = L.latLngBounds(places.map((p) => [p.lat, p.lng]))
+    map.fitBounds(bounds.pad(0.25), { animate: true, duration: 0.8 })
+  }, [map, selectedPlace, places])
 
   useEffect(() => {
     if (!selectedPlace) return
@@ -45,8 +74,20 @@ export default function MapView({ places, selectedId, onMapClick, onSelect, them
     return places.find((p) => p.id === selectedId) || null
   }, [places, selectedId])
 
+  const iconsById = useMemo(() => {
+    const map = new Map()
+    for (const p of places) {
+      map.set(p.id, makePinIcon({ active: p.id === selectedId, rating: p.rating }))
+    }
+    return map
+  }, [places, selectedId])
+
   return (
     <div className="relative h-full w-full">
+      <div className="pointer-events-none absolute inset-0 z-10">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/40 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/45 to-transparent" />
+      </div>
       <div className="pointer-events-none absolute inset-0 z-10">
         <div className="absolute left-4 top-4 hidden rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-sm text-slate-200 shadow-glass backdrop-blur-xl md:block">
           <div className="font-semibold text-slate-50">Click to drop a pin</div>
@@ -60,13 +101,14 @@ export default function MapView({ places, selectedId, onMapClick, onSelect, them
           className={theme === 'dark' ? 'tt-dark-tiles' : ''}
         />
         <MapClickHandler onMapClick={onMapClick} />
-        <MapController selectedPlace={selectedPlace} markerRefs={markerRefs} />
+        <MapController selectedPlace={selectedPlace} places={places} markerRefs={markerRefs} />
 
         <MarkerClusterGroup chunkedLoading showCoverageOnHover={false}>
           {places.map((place) => (
             <Marker
               key={place.id}
               position={[place.lat, place.lng]}
+              icon={iconsById.get(place.id)}
               eventHandlers={{ click: () => onSelect?.(place.id) }}
               ref={(marker) => {
                 if (!marker) return

@@ -77,7 +77,15 @@ export default function App() {
         <div className="absolute -bottom-28 -right-20 h-[520px] w-[520px] rounded-full bg-cyan-400/20 blur-3xl" />
       </div>
 
-      <div className="flex h-full flex-col md:flex-row">
+      <main className="relative h-full w-full">
+        <MapView
+          places={places}
+          selectedId={selectedId}
+          onSelect={setSelectedId}
+          onMapClick={(latlng) => openAddModalFor(latlng)}
+          theme={theme}
+        />
+
         <Sidebar
           open={sidebarOpen}
           onToggle={() => setSidebarOpen((v) => !v)}
@@ -93,44 +101,34 @@ export default function App() {
           }}
         />
 
-        <main className="relative flex-1">
-          <div className="absolute right-4 top-4 z-[500] hidden items-center gap-2 md:flex">
-            <button
-              type="button"
-              onClick={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
-              className="rounded-2xl border border-white/10 bg-slate-950/40 px-3 py-2 text-sm font-medium text-slate-100 shadow-glass backdrop-blur-xl transition hover:bg-slate-950/55"
-              aria-label="Toggle theme"
-              title="Toggle theme"
-            >
-              <span className="inline-flex items-center gap-2">
-                {theme === 'dark' ? <FiSun /> : <FiMoon />}
-                <span className="hidden lg:inline">{theme === 'dark' ? 'Light' : 'Dark'}</span>
-              </span>
-            </button>
-            <button
-              type="button"
-              onClick={() => openAddModalFor(selectedPlace ? { lat: selectedPlace.lat, lng: selectedPlace.lng } : { lat: 20, lng: 0 })}
-              className="rounded-2xl bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 shadow-glass transition hover:brightness-110"
-            >
-              <span className="inline-flex items-center gap-2">
-                <FiPlus /> Add
-              </span>
-            </button>
-          </div>
-
-          <div className="h-full">
-            <MapView
-              places={places}
-              selectedId={selectedId}
-              onSelect={setSelectedId}
-              onMapClick={(latlng) => openAddModalFor(latlng)}
-              theme={theme}
-            />
-          </div>
-
-          {/* Empty state lives inside the map for a stronger onboarding feel */}
-        </main>
-      </div>
+        <div className="absolute right-4 top-4 z-[600] hidden items-center gap-2 md:flex">
+          <button
+            type="button"
+            onClick={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
+            className="rounded-2xl border border-white/10 bg-slate-950/40 px-3 py-2 text-sm font-medium text-slate-100 shadow-glass backdrop-blur-xl transition hover:bg-slate-950/55"
+            aria-label="Toggle theme"
+            title="Toggle theme"
+          >
+            <span className="inline-flex items-center gap-2">
+              {theme === 'dark' ? <FiSun /> : <FiMoon />}
+              <span className="hidden lg:inline">{theme === 'dark' ? 'Light' : 'Dark'}</span>
+            </span>
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              openAddModalFor(
+                selectedPlace ? { lat: selectedPlace.lat, lng: selectedPlace.lng } : { lat: 20, lng: 0 },
+              )
+            }
+            className="rounded-2xl bg-gradient-to-r from-fuchsia-500 to-cyan-400 px-4 py-2 text-sm font-semibold text-slate-950 shadow-glass transition hover:brightness-110 hover:shadow-[0_18px_50px_rgba(34,211,238,0.18)] active:scale-[0.99]"
+          >
+            <span className="inline-flex items-center gap-2">
+              <FiPlus /> Add
+            </span>
+          </button>
+        </div>
+      </main>
 
       <AddPlaceModal
         open={modalOpen}

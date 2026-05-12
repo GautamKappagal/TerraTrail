@@ -48,7 +48,7 @@ export default function Sidebar({
   }, [places])
 
   return (
-    <aside className="relative z-30 w-full md:h-full md:w-[380px] md:max-w-[380px]">
+    <aside className="relative z-[650] w-full md:fixed md:inset-y-4 md:left-4 md:w-[380px] md:max-w-[380px]">
       <div className="flex items-center justify-between gap-3 border-b border-white/10 bg-slate-950/40 px-4 py-4 backdrop-blur-xl md:hidden">
         <div className="min-w-0">
           <div className="text-base font-semibold tracking-tight text-slate-50">TerraTrail</div>
@@ -86,8 +86,7 @@ export default function Sidebar({
             exit={{ x: -28, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 280, damping: 30 }}
             className={[
-              'md:static md:flex md:h-full md:translate-x-0 md:flex-col md:opacity-100',
-              'md:border-r md:border-white/10 md:bg-slate-950/30 md:backdrop-blur-xl',
+              'md:static md:flex md:h-full md:w-full md:translate-x-0 md:flex-col md:opacity-100 md:rounded-3xl md:border md:border-white/10 md:bg-slate-950/45 md:shadow-glass md:backdrop-blur-xl',
               'fixed left-0 top-0 h-full w-[92%] max-w-[420px] border-r border-white/10 bg-slate-950/60 backdrop-blur-xl',
             ].join(' ')}
           >
